@@ -13,7 +13,30 @@
 	    {{ session('message-failure') }}!
 	</div>
 @endif
-<table class="table table-hover table-bordered table-striped">
+        <div class="row">
+            <div class="filter-custom col-lg-4 pull-right">
+                <div class="row">
+	                <div class="filter-container col-lg-4 pull-right">
+					<select class="form-control website">
+					<option value="all" selected>All</option>
+						@foreach ($websites as $website)
+						
+						
+						<option value="{{ $website->id }}" 
+							@if ($website == $website->domain) 
+							selected="selected"
+
+							@endif
+
+						>{{ $website->domain }}
+						@endforeach
+						</option>
+					</select>
+					</div>
+				</div>
+			</div>
+	    </div>
+<table class="table table-hover table-bordered table-striped" style="margin-top: 20px;">
 	<thead>
 		<tr>
 			<th>Date</th>

@@ -88,8 +88,12 @@ require(['Chart.js-master/dist/Chart.js'], function(Chart){
 $('.category').on('change', function (e) {
   var visitorId = $(this).attr('visitor-id');
   var categoryId = $(this).val();
-  
-  console.log(visitorId);
-  console.log(categoryId);
-  window.location.href = '/visitor/'+visitorId+'/category/'+categoryId+'/classify'
+
+  window.location.href = '/visitor/'+visitorId+'/category/'+categoryId+'/classify';
+})
+
+$('.website').on('change', function (e) {
+  var websiteId = $(this).val();
+
+  window.location.href = '/website/'+websiteId+'/visitors';
 })

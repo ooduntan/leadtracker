@@ -31,4 +31,25 @@ class Website extends Model
     {
         return $this->belongsTo('App\Visitor');
     }
+
+    public function scopeFindOneById($query, $websiteId)
+    {
+        return $query
+            ->where('id', $websiteId)
+            ->first();
+    }
+
+    public function scopeFindAllById($query, $websiteId)
+    {
+        return $query
+             ->where('id', $websiteId)
+            ->get();
+    }
+
+    public function scopeFindAll($query)
+    {
+        return $query
+            ->orderBy('id', 'ASC')
+            ->get();
+    }
 }

@@ -59,6 +59,11 @@ Route::get('visitors', [
 	'as'   => 'visitors',
 ]);
 
+Route::get('website/{websiteId}/visitors', [
+	'uses' => 'VisitorController@fetchByWebsite',
+	'as'   => 'fetch-by-website',
+]);
+
 Route::get('visitor/{visitorId}/category/{categoryId}/classify', [
 	'uses' => 'VisitorController@classify',
 	'as'   => 'classify',

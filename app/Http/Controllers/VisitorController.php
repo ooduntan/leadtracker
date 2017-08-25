@@ -42,13 +42,30 @@ class VisitorController extends Controller
      public function getVisitors()
      {
         $categories = Category::get();
-        $website = Auth::user()->website;
+        $websites = Auth::user()->website;
         $visitors = [];
-        foreach ($website as $key => $value) {
-            array_push($visitors, Visitor::findAllById($value->id));
+        foreach ($websites as $key => $value) {
+            array_push($visitors, Visitor::where('website_id', $value->id)->get());
         }
 
-     	return view('visitor.visitor', compact('visitors', 'categories'));
+        // dd($visitors);
+
+
+     	return view('visitor.visitor', compact('visitors', 'categories', 'websites'));
+     }
+
+     public function fetchByWebsite(Request $request)
+     {
+        $categories = Category::get();
+        $websites = Auth::user()->website;
+        $website = Website::where('id', $request->websiteId)->get();
+        // $visitors = Visitor::where('website_id', $website->id)->get();
+        $visitors = [];
+        foreach ($website as $key => $value) {
+            array_push($visitors, Visitor::where('website_id', $value->id)->get());
+        }
+
+        return view('visitor.visitor', compact('visitors', 'categories', 'websites'));
      }
 
      public function classify(Request $request)
