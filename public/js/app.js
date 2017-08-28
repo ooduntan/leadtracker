@@ -94,6 +94,6 @@ $('.category').on('change', function (e) {
 
 $('.website').on('change', function (e) {
   var websiteId = $(this).val();
-
+  console.log(websiteId);
   window.location.href = '/website/'+websiteId+'/visitors';
 })

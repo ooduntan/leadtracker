@@ -18,17 +18,12 @@
                 <div class="row">
 	                <div class="filter-container col-lg-4 pull-right">
 					<select class="form-control website">
-					<option value="all" selected>All</option>
-						@foreach ($websites as $website)
-						
-						
-						<option value="{{ $website->id }}" 
-							@if ($website == $website->domain) 
+						@foreach ($websites as $web)
+						<option value="{{ $web->id }}"
+							@if ($web->domain == $value->domain) 
 							selected="selected"
-
 							@endif
-
-						>{{ $website->domain }}
+						>{{ $web->domain }}
 						@endforeach
 						</option>
 					</select>

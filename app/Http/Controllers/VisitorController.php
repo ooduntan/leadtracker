@@ -44,28 +44,42 @@ class VisitorController extends Controller
         $categories = Category::get();
         $websites = Auth::user()->website;
         $visitors = [];
+        $value = [];
+        $this->addAllToWebsites($websites);
         foreach ($websites as $key => $value) {
             array_push($visitors, Visitor::where('website_id', $value->id)->get());
         }
-
-        // dd($visitors);
-
-
-     	return view('visitor.visitor', compact('visitors', 'categories', 'websites'));
+     	return view('visitor.visitor', compact('visitors', 'categories', 'websites', 'value'));
      }
 
      public function fetchByWebsite(Request $request)
      {
         $categories = Category::get();
         $websites = Auth::user()->website;
-        $website = Website::where('id', $request->websiteId)->get();
-        // $visitors = Visitor::where('website_id', $website->id)->get();
         $visitors = [];
+        $value = [];
+        $this->addAllToWebsites($websites);
+        if ($request->websiteId == 0) {
+            return redirect()->route('visitors');
+        }
+        $website = Website::where('id', $request->websiteId)->get();
+        array_push($value, $website);
+        
         foreach ($website as $key => $value) {
             array_push($visitors, Visitor::where('website_id', $value->id)->get());
         }
 
-        return view('visitor.visitor', compact('visitors', 'categories', 'websites'));
+        return view('visitor.visitor', compact('visitors', 'categories', 'websites', 'value'));
+     }
+
+     private function addAllToWebsites($websites)
+     {
+        $obj1 = new \stdClass();
+        $obj2 = new \stdClass();
+        $obj1->website = $obj2;
+        $obj2->id = 0;
+        $obj2->domain = 'All';
+        $websites->push($obj2);
      }
 
      public function classify(Request $request)
