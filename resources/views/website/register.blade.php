@@ -16,15 +16,6 @@
                         </span>
                         @endif
                     </div>
-                    <!-- <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                        <label for="status">Status</label>
-                        <input type="status" class="form-control" id="status" name="status">
-                        @if ($errors->has('status'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('status') }}</strong>
-                        </span>
-                        @endif
-                    </div> -->
                     <div class="form-group">
                     <button type="submit" class="btn btn btn-primary">Register</button>
                     </div>

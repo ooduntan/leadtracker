@@ -93,9 +93,9 @@ class VisitorController extends Controller
 
      public function getVisitorDetails(Request $request)
      {
-        $visitor = Visitor::get();
+        $visitor = Visitor::findOneById($request->id)->first();
 
-        return view('visitor.visitor-details');
+        return view('visitor.visitor-details', compact('visitor'));
      }
 
      public function classify(Request $request)
