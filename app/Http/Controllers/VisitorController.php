@@ -82,6 +82,22 @@ class VisitorController extends Controller
         $websites->push($obj2);
      }
 
+     public function getActions(Request $request)
+     {
+        $categories = Category::all();
+        $category = Category::where('id', $request->category)->first();
+        $visitors = Visitor::where('category_id', $request->category)->get();
+
+        return view('visitor.visitor-actions', compact('visitors', 'category', 'categories'));
+     }
+
+     public function getVisitorDetails(Request $request)
+     {
+        $visitor = Visitor::get();
+
+        return view('visitor.visitor-details');
+     }
+
      public function classify(Request $request)
      {
         $visitor = Visitor::where('id', $request->visitorId)->update([
@@ -95,5 +111,4 @@ class VisitorController extends Controller
             return redirect()->route('visitors')->with('message-failure', 'Oops, something went wrong');
         }
      }
-
 }

@@ -69,6 +69,15 @@ Route::get('visitor/{visitorId}/category/{categoryId}/classify', [
 	'as'   => 'classify',
 ]);
 
+Route::get('actions', [
+	'uses' => 'VisitorController@getActions',
+	'as'   => 'get-actions',
+]);
+
+Route::get('visitor/{id}/details', [
+	'uses' => 'VisitorController@getVisitorDetails',
+]);
+
 Route::get('website', [
 	'uses' => 'WebsiteController@websiteForm',
 	'as'   => 'website-form',

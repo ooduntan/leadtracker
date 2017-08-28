@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Dashboard')
+@section('title', 'Visitors')
 @section('content')
 @include('partial.top-navbar')
 <div class="container">
@@ -53,7 +53,7 @@
 		@foreach ($value as $visitor)
 		<tr>
 			<td>{{ Carbon\Carbon::createFromTimeStamp(strtotime($visitor->last_seeen))->toDateTimeString() }}</td>
-			<td><a href="#">{{ $visitor->company }}</a></td>
+			<td><a href="{{ route('get-actions','category=' . $visitor->category_id) }}">{{ $visitor->company }}</a></td>
 			<td>{{ $visitor->description }}</td>
 			<td>{{ $visitor->postal_code }}</td>
 			<td>{{ $visitor->city }}</td>
@@ -72,14 +72,12 @@
                                 selected="selected"
                             >Unclassified</option>@endif
 				    @foreach ($categories as $category)
-				    	<option value="{{ $category->id }}"  @if($visitor->status === 1) @if($value == $category->name)
-                                selected="selected"
+				    	<option value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
+                            selected="selected"
                             @endif
                  			@endif
-				    	>{{ $category->name }}
-
+				    	    >{{ $category->name }}
 				    	</option> 
-
 				    @endforeach
 				</select>
 			</td>
