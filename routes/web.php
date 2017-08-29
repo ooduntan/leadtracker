@@ -87,3 +87,8 @@ Route::post('website', [
 	'uses' => 'WebsiteController@registerWebsite',
 	'as'   => 'register-website',
 ]);
+
+Route::get('profile', [
+	'uses' => 'UserController@profile',
+	'as'   => 'profile',
+]);
