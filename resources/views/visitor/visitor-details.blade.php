@@ -16,12 +16,12 @@
   </div>
 @endif
   <div class="col-md-4">
-  	<div class="row" style="background-color: #E0E0E0";>
+  	<div class="row" style="background-color: #E0E0E0; padding: 10px;">
   		<h3>{{ $visitor->company }}</h3>
   	</div>
-  	<div class="row" style="background-color: #E0E0E0; margin-top: 10px;">
+  	<div class="row" style="background-color: #E0E0E0; margin-top: 10px; padding: 10px;">
   		<p><b> About {{ $visitor->company }}</b></p>
-  		<form role="form" method="POST" action="/visitor/{{ $visitor->id }}/details">
+  		<form name="form-a" role="form" method="POST" action="/visitor/{{ $visitor->id }}/details">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
 	            <label for="contact">Contact Name</label>
@@ -71,7 +71,7 @@
         </div>
 	    </form>
   	</div>
-  	<div class="row" style="background-color: #E0E0E0; margin-top: 10px;">
+  	<div class="row" style="background-color: #E0E0E0; margin-top: 10px; padding: 10px;">
   		<h5>Activity</h5>
       <div class="row" style="color: red;">
         <div class="col-md-6">
@@ -91,35 +91,36 @@
   	</div>
     </div>
   <div class="col-md-8">
-  	<div class="row" style="background-color: #E0E0E0; margin-left: 5px;">
+  	<div class="row" style="background-color: #E0E0E0; margin-left: 5px; padding: 10px;">
 
   		<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok" aria-hidden="true">New note</span></button>
       <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok" aria-hidden="true">Log activity</span></button>
   
-      <form role="form" method="POST" action="" style="margin-top: 10px;">
+      <form  name="form-b" role="form" method="POST" action="" style="margin-top: 10px;">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
           <textarea class="form-control"> </textarea>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn btn-primary">Save</button>
-          <button type="submit" class="btn btn btn-primary">Discard</button>
+          <button class="btn btn btn-primary submit">Save</button>
+          <button class="btn btn btn-primary submit">Discard</button>
         </div>
       </form>
   	</div>
 
-    <div class="row" style="margin-left: 20%; margin-top:20px;">
+    <div class="row" style="margin-left: 20%; margin-top:20px; padding: 10px;">
         <div class="row">
           <h4>August 2017</h4>
         </div>
-      	<div class="row" style="background-color: #E0E0E0;">
+      	<div class="row" style="background-color: #E0E0E0; padding: 10px;">
             <p>Karl viewed our Home page</p>
             <p>August 3, 16:58</p>
       	</div>
-        <div class="row" style="background-color: #E0E0E0; margin-top:5px;">
+        <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
             <p>Karl viewed our product page</p>
             <p>August 5, 16:58</p>
         </div>
-        <div class="row" style="background-color: #E0E0E0; margin-top:5px;">
+        <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
             <p>Note</p>
             <p>Might be interesting Lead</p>
         </div>
@@ -127,11 +128,11 @@
         <div class="row">
           <h4>July 2017</h4>
         </div>
-        <div class="row" style="background-color: #E0E0E0;">
+        <div class="row" style="background-color: #E0E0E0; padding: 10px;">
             <p>Karl viewed our Home page</p>
             <p>July 13, 01:58</p>
         </div>
-        <div class="row" style="background-color: #E0E0E0; margin-top:5px;">
+        <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
             <p>Note</p>
             <p>Might be interesting Lead</p>
         </div>

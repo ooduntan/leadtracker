@@ -4,13 +4,13 @@
 @include('partial.top-navbar')
 <div class="container">
 	<div class="row">
-	  <div class="col-md-6" style="background-color: #E0E0E0;">
+	  <div class="col-md-6" style="background-color: #E0E0E0; padding: 10px;">
 	  <h6 style="color: red;">Your Profile</h6>
 	  	<img width="60" height="60" src="{{ asset('download.png') }}" alt="banner-img">
 	  	Microsoft Crop.
 	  	<p>www.microsoft.com</p>
 	  </div>
-	  <div class="col-md-5" style="background-color: #E0E0E0; margin-left: 15px;">
+	  <div class="col-md-5" style="background-color: #E0E0E0; margin-left: 15px; padding: 10px;">
 	  	<div class="col-md-6">
 	  		<div class="row">
 	  			<h4 style="color: red;">Your Subscription</h5>
@@ -27,9 +27,9 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-11" style="background-color: #E0E0E0;  margin-top: 10px;">
+		<div class="col-md-11" style="background-color: #E0E0E0;  margin-top: 10px; padding: 10px;">
   		<h4 style="color: red;">Websites</h5>
-  		<table class="table table-hover table-bordered table-striped" style="margin-top: 20px;">
+  		<table class="table table-hover table-bordered table-striped" style="margin-top: 20px; padding: 10px;">
 			<thead>
 				<tr>
 					<th>Website</th>
@@ -39,6 +39,7 @@
 				</tr>
 			</thead>
 			<tbody>
+				@if (count($websites) > 0)
 				@foreach ($websites as $website)
 				<tr>
 					
@@ -61,6 +62,7 @@
 					
 				</tr>
 				@endforeach
+				@endif
 			</tbody>
 
 		</table>
@@ -69,9 +71,9 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-md-11" style="background-color: #E0E0E0;  margin-top: 10px;">
+		<div class="col-md-11" style="background-color: #E0E0E0;  margin-top: 10px; padding: 10px;">
   		<h4 style="color: red;">Users</h5>
-  		<table class="table table-hover table-bordered table-striped" style="margin-top: 20px;">
+  		<table class="table table-hover table-bordered table-striped" style="margin-top: 20px; padding: 10px;">
 			<thead>
 				<tr>
 					<th>First Name</th>

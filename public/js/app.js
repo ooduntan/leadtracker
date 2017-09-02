@@ -98,9 +98,7 @@ $('.website').on('change', function (e) {
   window.location.href = '/website/'+websiteId+'/visitors';
 })
 
-$('.update-company').on('change', function (e) {
-  var visitorId = $(this).attr('visitor-id');
-  var categoryId = $(this).val();
-console.log(categoryId);
-  // window.location.href = '/visitor/'+visitorId+'/details';
-})
+$("#submit").click(function(e){
+    e.preventdefault();
+    alert("Submitted");
+});
