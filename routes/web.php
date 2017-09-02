@@ -55,7 +55,7 @@ Route::get('ripedata', [
 ]);
 
 Route::get('visitors', [
-	'uses' => 'VisitorController@getVisitors',
+	'uses' => 'VisitorController@getNewVisitors',
 	'as'   => 'visitors',
 ]);
 
@@ -74,8 +74,29 @@ Route::get('actions', [
 	'as'   => 'get-actions',
 ]);
 
+Route::get('visitors/lead', [
+	'uses' => 'VisitorController@getLeadVisitor',
+	'as'   => 'lead',
+]);
+
+Route::get('visitors/customer', [
+	'uses' => 'VisitorController@getCustomerVisitor',
+	'as'   => 'customer',
+]);
+
+Route::get('visitors/competitor', [
+	'uses' => 'VisitorController@getCompetitorVisitor',
+	'as'   => 'competitor',
+]);
+
 Route::get('visitor/{id}/details', [
 	'uses' => 'VisitorController@getVisitorDetails',
+	'as' => 'visitor-details',
+]);
+
+Route::post('visitor/{id}/details', [
+	'uses' => 'VisitorController@updateVisitorDetails',
+	'as' => 'update-contact',
 ]);
 
 Route::get('website', [

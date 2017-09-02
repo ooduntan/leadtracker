@@ -10,14 +10,9 @@ class Category extends Model
        'name', 'description', 'user_id',
     ];
 
-    public function products()
+    public function visitor()
     {
-    	return $this->hasMany('App\Product');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
+        $this->belongsTo('App\Visitor');
     }
 
     public function scopeFindOneById($query, $categoryId)

@@ -15,29 +15,30 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->integer('visitor_id')->unsigned();
-            $table->string('company_name');
-            $table->string('owner_id');
-            $table->string('company_billing_email')->unique();
-            $table->string('street');
-            $table->string('country');
-            $table->string('postal_code');
-            $table->string('subscription');
-            $table->string('website');
-            $table->string('city');
-            $table->string('vat_id');
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('contact_name')->nullable();
+            $table->integer('contact_phone')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->string('company_billing_email')->unique()->nullable();
+            $table->string('street')->nullable();
+            $table->string('country')->nullable();
+            $table->integer('postal_code')->nullable();
+            $table->string('website')->nullable();
+            $table->string('city')->nullable();
+            $table->string('vat_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade');
 
             $table->foreign('visitor_id')
                     ->references('id')
                     ->on('visitors')
                     ->onDelete('cascade');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
         });
     }
 

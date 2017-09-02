@@ -24,12 +24,22 @@ class Visitor extends Model
         return $this->hasMany('App\Website');
     }
 
+    /**
+     * A visitor has one category
+     *
+     * @return object
+     */
+    public function category()
+    {
+        return $this->hasOne('App\Category');
+    }
+
      /**
      * A Visitor has many company.
      *
      * @return Object
      */
-    public function company()
+    public function companies()
     {
         return $this->hasMany('App\Company');
     }

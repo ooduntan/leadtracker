@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\Category;
+use App\Company;
 use App\Visitor;
 use App\User;
 use App\Website;
@@ -109,6 +110,20 @@ class B2BSeeder extends Seeder
             'source' => "ripe",
             'first_seen' => '2003-09-03T13:30:07Z',
             'last_seen' => '2003-09-03T13:30:07Z',
+        ]);
+
+        Company::create([
+            'visitor_id' => 1,
+            // 'contact_name' => "",
+            // 'contact_email' => "",
+            'company_name' => "HEINEN-LOEWENSTEIN-GMBH-BAD-EMS-NET",
+            // 'company_billing_email' => "",
+            // 'street' => "",
+            'country' => "US",
+            // 'postal_code' => "",
+            // 'website' => "",
+            // 'city' => "",
+            // 'vat_id' => "",
         ]);
     }
 }

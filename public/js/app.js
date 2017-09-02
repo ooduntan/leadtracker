@@ -97,3 +97,10 @@ $('.website').on('change', function (e) {
   console.log(websiteId);
   window.location.href = '/website/'+websiteId+'/visitors';
 })
+
+$('.update-company').on('change', function (e) {
+  var visitorId = $(this).attr('visitor-id');
+  var categoryId = $(this).val();
+console.log(categoryId);
+  // window.location.href = '/visitor/'+visitorId+'/details';
+})

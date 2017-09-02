@@ -42,7 +42,7 @@ class User extends Authenticatable
      *
      * @return object
      */
-    public function company()
+    public function companies()
     {
         return $this->hasMany('App\Company');
     }
@@ -52,8 +52,28 @@ class User extends Authenticatable
      *
      * @return object
      */
-    public function website()
+    public function websites()
     {
         return $this->hasMany('App\Website');
+    }
+
+    /**
+     * A user has many notes
+     *
+     * @return object
+     */
+    public function notes()
+    {
+        return $this->hasMany('App\Note');
+    }
+
+    /**
+     * A user has many activities
+     *
+     * @return object
+     */
+    public function activities()
+    {
+        return $this->hasMany('App\Activity');
     }
 }

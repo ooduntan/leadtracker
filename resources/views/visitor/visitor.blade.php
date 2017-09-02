@@ -53,7 +53,7 @@
 		@foreach ($value as $visitor)
 		<tr>
 			<td>{{ Carbon\Carbon::createFromTimeStamp(strtotime($visitor->last_seeen))->toDateTimeString() }}</td>
-			<td><a href="{{ route('get-actions','category=' . $visitor->category_id) }}">{{ $visitor->company }}</a></td>
+			<td><a href="/visitor/{{ $visitor->id }}/details">{{ $visitor->company }}</a></td>
 			<td>{{ $visitor->description }}</td>
 			<td>{{ $visitor->postal_code }}</td>
 			<td>{{ $visitor->city }}</td>

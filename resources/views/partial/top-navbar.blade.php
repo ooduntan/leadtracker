@@ -20,6 +20,9 @@
           <ul class="dropdown-menu">
             <li><a href="/">Home</a></li>
             <li><a href="{{route('visitors')}}">New Visitors</a></li>
+            <li><a href="{{route('lead')}}">Leads</a></li>
+            <li><a href="{{route('competitor')}}">Competitors</a></li>
+            <li><a href="{{route('customer')}}">Customers</a></li>
             <li><a href="{{route('dashboard-index')}}">Dashboard</a></li>
             <li><a href="{{route('profile')}}">Settings</a></li>
             <li role="separator" class="divider"></li>

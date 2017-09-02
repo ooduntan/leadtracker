@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
 	protected $fillable = [
-        'user_id',
+        'category_id',
+        'contact_name',
+        'contact_email',
         'visitor_id',
         'company_name',
         'company_billing_email',
-        'owner_id',
         'street',
         'country',
         'postal_code',
-        'subscription',
         'website',
         'city',
         'vat_id',

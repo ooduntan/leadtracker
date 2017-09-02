@@ -22,7 +22,7 @@ class CreateVisitorsTable extends Migration
             $table->string('country');
             $table->integer('postal_code')->nullable();
             $table->string('company');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('links');
             $table->string('source')->nullable();
             $table->string('state')->nullable();

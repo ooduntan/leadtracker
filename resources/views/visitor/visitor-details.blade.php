@@ -3,14 +3,25 @@
 @section('content')
 @include('partial.top-navbar')
 <div class="container">
+
 <div class="row">
+@if (session('message-success'))
+  <div class="alert alert-success">
+      {{ session('message-success') }}!
+  </div>
+@endif
+@if (session('message-failure'))
+  <div class="alert alert-success">
+      {{ session('message-failure') }}!
+  </div>
+@endif
   <div class="col-md-4">
   	<div class="row" style="background-color: #E0E0E0";>
   		<h3>{{ $visitor->company }}</h3>
   	</div>
   	<div class="row" style="background-color: #E0E0E0; margin-top: 10px;">
   		<p><b> About {{ $visitor->company }}</b></p>
-  		<form role="form" method="POST" action="">
+  		<form role="form" method="POST" action="/visitor/{{ $visitor->id }}/details">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
 	            <label for="contact">Contact Name</label>
@@ -41,13 +52,23 @@
           </div>
           <div class="form-group{{ $errors->has('classification') ? ' has-error' : '' }}">
               <label for="classification">Classification</label>
-              <input type="classification" class="form-control" id="classification" name="classification" value="{{ $visitor->classification }}">
-              @if ($errors->has('classification'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('classification') }}</strong>
-              </span>
-              @endif
+              <select name="categoryId" class="form-control" visitor-id={{ $visitor->id }}>
+           @if($visitor->status === 0) <option 
+                                selected="selected"
+                            >Unclassified</option>@endif
+            @foreach ($categories as $category)
+              <option name="categoryId" value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
+                            selected="selected"
+                            @endif
+                      @endif
+                  >{{ $category->name }}
+              </option> 
+            @endforeach
+        </select>
           </div>
+          <div class="form-group pull-right">
+        <button type="submit" class="btn btn btn-primary">Update</button>
+        </div>
 	    </form>
   	</div>
   	<div class="row" style="background-color: #E0E0E0; margin-top: 10px;">
