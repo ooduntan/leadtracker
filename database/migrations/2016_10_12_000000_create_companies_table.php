@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->string('company_name')->nullable();
             $table->string('contact_name')->nullable();
-            $table->integer('contact_phone')->nullable();
+            $table->string('contact_phone')->nullable();
             $table->string('contact_email')->nullable();
             $table->string('company_billing_email')->unique()->nullable();
             $table->string('street')->nullable();

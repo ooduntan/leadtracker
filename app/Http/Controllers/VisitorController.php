@@ -139,14 +139,14 @@ class VisitorController extends Controller
     public function getVisitorDetails(Request $request)
     {
         $visitor = Visitor::findOneById($request->id)->first();
+        $company = Company::where('visitor_id', $request->id)->first();
         $categories = Category::get();
 
-        return view('visitor.visitor-details', compact('visitor', 'categories'));
+        return view('visitor.visitor-details', compact('visitor', 'categories', 'company'));
     }
 
     public function updateVisitorDetails(Request $request)
     {
-        // dd($request->categoryId);
         $company = Company::where('visitor_id', $request->id)->update([
             'contact_name' => $request->contact,
             'contact_email' => $request->email,

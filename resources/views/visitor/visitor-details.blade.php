@@ -25,7 +25,7 @@
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
 	            <label for="contact">Contact Name</label>
-	            <input type="contact" class="form-control" id="contact" name="contact" value="{{ $visitor->contact }}">
+	            <input type="contact" class="form-control" id="contact" name="contact" value="{{ $company->contact_name }}">
 	            @if ($errors->has('contact'))
 	            <span class="help-block">
 	                <strong>{{ $errors->first('contact') }}</strong>
@@ -34,7 +34,7 @@
 	        </div>
           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
               <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" value="{{ $visitor->email }}">
+              <input type="email" class="form-control" id="email" name="email" value="{{ $company->contact_email }}">
               @if ($errors->has('email'))
               <span class="help-block">
                   <strong>{{ $errors->first('email') }}</strong>
@@ -43,7 +43,7 @@
           </div>
           <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
               <label for="phone">Phone</label>
-              <input type="phone" class="form-control" id="phone" name="phone" value="{{ $visitor->phone }}">
+              <input type="phone" class="form-control" id="phone" name="phone" value="{{ $company->contact_phone }}">
               @if ($errors->has('phone'))
               <span class="help-block">
                   <strong>{{ $errors->first('phone') }}</strong>
