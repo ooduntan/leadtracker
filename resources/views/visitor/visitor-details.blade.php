@@ -71,6 +71,7 @@
                                 selected="selected"
                             >Unclassified</option>@endif
             @foreach ($categories as $category)
+
               <option value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
                             selected="selected"
                             @endif
