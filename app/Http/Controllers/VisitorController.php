@@ -142,6 +142,8 @@ class VisitorController extends Controller
         $company = Company::where('visitor_id', $request->id)->first();
         $categories = Category::get();
 
+        // dd($company);
+
         return view('visitor.visitor-details', compact('visitor', 'categories', 'company'));
     }
 

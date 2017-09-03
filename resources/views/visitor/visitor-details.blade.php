@@ -25,7 +25,11 @@
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
 	            <label for="contact">Contact Name</label>
-	            <input type="contact" class="form-control" id="contact" name="contact" value="{{ $company->contact_name }}">
+              @if (count($company) > 0)
+              <input type="contact" class="form-control" id="contact" name="contact" value="{{ $company->contact_name }}">
+              @else
+	            <input type="contact" class="form-control" id="contact" name="contact" value="">
+              @endif
 	            @if ($errors->has('contact'))
 	            <span class="help-block">
 	                <strong>{{ $errors->first('contact') }}</strong>
@@ -34,7 +38,12 @@
 	        </div>
           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
               <label for="email">Email</label>
+              @if (count($company) > 0)
               <input type="email" class="form-control" id="email" name="email" value="{{ $company->contact_email }}">
+              
+              @else
+              <input type="email" class="form-control" id="email" name="email" value="">
+              @endif
               @if ($errors->has('email'))
               <span class="help-block">
                   <strong>{{ $errors->first('email') }}</strong>
@@ -43,7 +52,12 @@
           </div>
           <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
               <label for="phone">Phone</label>
+              @if (count($company) > 0)
               <input type="phone" class="form-control" id="phone" name="phone" value="{{ $company->contact_phone }}">
+              
+              @else
+              <input type="phone" class="form-control" id="phone" name="phone" value="">
+              @endif
               @if ($errors->has('phone'))
               <span class="help-block">
                   <strong>{{ $errors->first('phone') }}</strong>
@@ -52,12 +66,12 @@
           </div>
           <div class="form-group{{ $errors->has('classification') ? ' has-error' : '' }}">
               <label for="classification">Classification</label>
-              <select name="categoryId" class="form-control" visitor-id={{ $visitor->id }}>
-           @if($visitor->status === 0) <option 
+              <select class="form-control category" visitor-id={{ $visitor->id }}>
+           @if($visitor->status == 0) <option 
                                 selected="selected"
                             >Unclassified</option>@endif
             @foreach ($categories as $category)
-              <option name="categoryId" value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
+              <option value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
                             selected="selected"
                             @endif
                       @endif
