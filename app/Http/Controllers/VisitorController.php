@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Note;
 use App\Visitor;
 use App\Website;
 use App\Company;
 use App\Category;
+use App\Activity;
 use Carbon\Carbon;
 use \GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -141,29 +143,34 @@ class VisitorController extends Controller
         $visitor = Visitor::where('id', $request->id)->first();
         $company = Company::where('visitor_id', $request->id)->first();
         $categories = Category::get();
+        $notes = Note::get();
 
-        return view('visitor.visitor-details', compact('visitor', 'categories', 'company'));
+        return view('visitor.visitor-details', compact('visitor', 'categories', 'company', 'notes'));
     }
 
     public function updateVisitorDetails(Request $request)
     {
-        $company = Company::where('visitor_id', $request->id)->update([
-            'contact_name' => $request->contact,
-            'contact_email' => $request->email,
-            'category_id' => $request->categoryId,
-            'contact_phone' => $request->phone,
-        ]);
+        if (isset(($_POST['form-a']))) {
+            $company = Company::where('visitor_id', $request->id)->update([
+                'contact_name' => $request->contact,
+                'contact_email' => $request->email,
+                'category_id' => $request->categoryId,
+                'contact_phone' => $request->phone,
+            ]);
 
-        $visitor = Visitor::where('id', $request->id)->update([
-            'status' => 1,
-            'category_id' => $request->categoryId,
-        ]);
+            $visitor = Visitor::where('id', $request->id)->update([
+                'status' => 1,
+                'category_id' => $request->categoryId,
+            ]);
 
-        if($company) {
-            return redirect('/visitor/' . $request->id . '/details')->with('message-success', 'You succesfully updated the contact');
+            if ($company && $visitor) {
+                return redirect('/visitor/' . $request->id . '/details')->with('message-success', 'You succesfully updated the contact');
+            }
+
+            return redirect()->route()->with('message-failure', 'Something went wrong when updating the contact');
         }
-
-        return redirect()->route()->with('message-failure', 'Something went wrong when updating the contact');
+        echo "You are wrong";
+        
     }
 
     public function classify(Request $request)

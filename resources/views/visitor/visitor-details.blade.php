@@ -21,7 +21,7 @@
   	</div>
   	<div class="row" style="background-color: #E0E0E0; margin-top: 10px; padding: 10px;">
   		<p><b> About {{ $visitor->company }}</b></p>
-  		<form name="form-a" role="form" method="POST" action="/visitor/{{ $visitor->id }}/details">
+  		<form role="form" method="POST" action="/visitor/{{ $visitor->id }}/details">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
 	            <label for="contact">Contact Name</label>
@@ -66,13 +66,13 @@
           </div>
           <div class="form-group{{ $errors->has('classification') ? ' has-error' : '' }}">
               <label for="classification">Classification</label>
-              <select class="form-control category" visitor-id={{ $visitor->id }}>
+              <select class="form-control" name="categoryId" visitor-id={{ $visitor->id }}>
            @if($visitor->status == 0) <option 
                                 selected="selected"
                             >Unclassified</option>@endif
             @foreach ($categories as $category)
 
-              <option value="{{ $category->id }}"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
+              <option value="{{ $category->id }}" name="categoryId"  @if($visitor->status === 1) @if($visitor->category_id == $category->id)
                             selected="selected"
                             @endif
                       @endif
@@ -82,7 +82,7 @@
         </select>
           </div>
           <div class="form-group pull-right">
-        <button type="submit" class="btn btn btn-primary">Update</button>
+        <button name="form-a" type="submit" class="btn btn btn-primary">Update</button>
         </div>
 	    </form>
   	</div>
@@ -111,16 +111,17 @@
   		<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok" aria-hidden="true">New note</span></button>
       <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok" aria-hidden="true">Log activity</span></button>
   
-      <form  name="form-b" role="form" method="POST" action="" style="margin-top: 10px;">
+      <div style="margin-top: 10px;">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
-          <textarea class="form-control"> </textarea>
+          <input type="hidden" id="user_id" value="{{ Auth::user()->id }}">
+          <textarea id="note" class="form-control"> </textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn btn-primary submit">Save</button>
+          <button onclick="submitForms()" class="btn btn btn-primary submit">Save</button>
           <button class="btn btn btn-primary submit">Discard</button>
         </div>
-      </form>
+      </div>
   	</div>
 
     <div class="row" style="margin-left: 20%; margin-top:20px; padding: 10px;">
@@ -135,11 +136,12 @@
             <p>Karl viewed our product page</p>
             <p>August 5, 16:58</p>
         </div>
-        <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
-            <p>Note</p>
-            <p>Might be interesting Lead</p>
-        </div>
-
+        @foreach ($notes as $note)
+          <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
+              <p>Note</p>
+              <p>{{ $note->note }}</p>
+          </div>
+        @endforeach
         <div class="row">
           <h4>July 2017</h4>
         </div>

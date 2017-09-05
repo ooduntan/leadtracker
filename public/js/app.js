@@ -98,7 +98,22 @@ $('.website').on('change', function (e) {
   window.location.href = '/website/'+websiteId+'/visitors';
 })
 
-$("#submit").click(function(e){
-    e.preventdefault();
-    alert("Submitted");
-});
+function submitForms() {
+  var data = {
+    note: $('textarea#note').val(),
+    user_id: $('#user_id').val(),
+  }
+  $.ajax({
+    data: data,
+    type: "post",
+    url: "/note",
+    success: function(res){
+      if (res.message == "Success") {
+        alert("Note succesfully saved");
+      } else {
+        alert("Something went wrong")
+      }
+    }
+  });
+
+ }

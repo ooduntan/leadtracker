@@ -94,6 +94,11 @@ Route::get('visitor/{id}/details', [
 	'as' => 'visitor-details',
 ]);
 
+Route::post('note', [
+	'uses' => 'NoteActivtyController@postNote',
+	'as' => 'post-note',
+]);
+
 Route::post('visitor/{id}/details', [
 	'uses' => 'VisitorController@updateVisitorDetails',
 	'as' => 'update-contact',
