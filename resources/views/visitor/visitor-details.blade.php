@@ -124,14 +124,10 @@
       </div>
   	</div>
 
-    <div class="row" style="margin-left: 20%; margin-top:20px; padding: 10px;">
+    <div class="row load_note" style="margin-left: 20%; margin-top:20px; padding: 10px;">
         <div class="row">
           <h4>August 2017</h4>
         </div>
-      	<div class="row" style="background-color: #E0E0E0; padding: 10px;">
-            <p>Karl viewed our Home page</p>
-            <p>August 3, 16:58</p>
-      	</div>
         <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
             <p>Karl viewed our product page</p>
             <p>August 5, 16:58</p>
@@ -148,10 +144,6 @@
         <div class="row" style="background-color: #E0E0E0; padding: 10px;">
             <p>Karl viewed our Home page</p>
             <p>July 13, 01:58</p>
-        </div>
-        <div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">
-            <p>Note</p>
-            <p>Might be interesting Lead</p>
         </div>
     </div>
   </div>
