@@ -32,15 +32,64 @@ class VisitorController extends Controller
         $this->client = $client;
     }
 
+    /**
+     * get ripe data from the route base on ip passed
+     *
+     * @param Request $request
+     */
     public function getRipeData(Request $request)
     {
-    	$ip = '62.154.197.162';
-        $res = $this->client->request('GET', 'http://rest.db.ripe.net/search.json?query-string=' . $ip, [
+    	// $request->ip = '62.154.197.162';
+        $res = $this->client->request('GET', 'http://rest.db.ripe.net/search.json?query-string=' . $request->ip, [
 		    //'auth' => ['user', 'pass']
 		]);
 
-		dd(json_decode($res->getBody()));
+		$decodedBody = json_decode($res->getBody());
+        $data = $decodedBody->objects->object[0]->attributes->attribute;
+
+        $this->storeData($data);
      }
+
+    /**
+     * Get data from getRipeData method and save
+     *
+     * @param $data
+     */ 
+    public function storeData($data)
+    {
+        // dd($data);
+        $visitor = Visitor::create([
+            'website_id' => 1,
+            'ip_address' => $data[0]->value,
+            'country' => $data[3]->value,
+            'company' => $data[1]->value,
+            'description' => $data[2]->value,
+            'links' => json_encode([$data[4]->link->href, $data[5]->link->href, $data[7]->link->href]),
+            'source' => $data[10]->value,
+            'first_seen' => $data[8]->value,
+            'last_seen' => $data[9]->value,
+        ]);
+
+        $company = Company::create([
+            'visitor_id' => $visitor->id,
+            // 'contact_name' => "",
+            // 'contact_email' => "",
+            'company_name' => $visitor->company,
+            // 'company_billing_email' => "",
+            // 'street' => "",
+            'country' => $visitor->country,
+            // 'postal_code' => "",
+            // 'website' => "",
+            // 'city' => "",
+            // 'vat_id' => "",
+        ]);
+
+        if ($visitor && $company) {
+            return redirect()->route('dashboard-index')->with('message-success', 'You succesfully saved ripe data into the database');
+        }
+
+        return redirect()->route('dashboard-index')->with('message-failure', 'Something went wrong');
+    }
 
      public function getNewVisitors()
      {
@@ -167,10 +216,10 @@ class VisitorController extends Controller
                 return redirect('/visitor/' . $request->id . '/details')->with('message-success', 'You succesfully updated the contact');
             }
 
-            return redirect()->route()->with('message-failure', 'Something went wrong when updating the contact');
+            return redirect()->route('dashboard-index')->with('message-failure', 'Something went wrong when updating the contact');
         }
-        echo "You are wrong";
-        
+
+        return redirect()->route('dashboard-index')->with('message-failure', 'Wrong form');
     }
 
     public function classify(Request $request)

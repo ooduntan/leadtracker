@@ -49,7 +49,7 @@ Route::get('dashboard', [
 	'as'   => 'dashboard-index',
 ]);
 
-Route::get('ripedata', [
+Route::get('ripedata/{ip}', [
 	'uses' => 'VisitorController@getRipeData',
 	'as'   => 'visitor-ripe-data',
 ]);

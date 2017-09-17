@@ -8,8 +8,16 @@ class Visitor extends Model
 {
     protected $fillable = [
         'website_id',
-        'address',
-        'postal',
+        'ip_address',
+        'category_id',
+        'status',
+        'country',
+        'links',
+        'postal_code',
+        'company',
+        'description',
+        'source',
+        'state',
         'first_seen',
         'last_seen',
     ];

@@ -111,11 +111,13 @@ function submitForms()
     success: function(res) {
       if (res.message == "Success") {
         alert("Note succesfully saved");
+
         var newNote = '<div class="container">';
         newNote = '<div class="row" style="background-color: #E0E0E0; margin-top:5px; padding: 10px;">';
         newNote += '<p>Note</p>';
         newNote += '<p>' + data.note + '</p>';
         newNote += '</div></div>';
+
         $('.load_note').last().append(newNote);
       } else {
         alert("Something went wrong")
