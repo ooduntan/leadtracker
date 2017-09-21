@@ -1,28 +1,4 @@
-@extends('layout.master')
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Welcome to B2B-Tracker</title>
-        <p>
-      @if (session('message-confirm'))
-        <div class="alert alert-danger">
-            {{ session('message-confirm') }}!
-        </div>
-      @endif
-    </p>
-
-    <p>
-      @if (session('message-email'))
-        <div class="alert alert-danger">
-            {{ session('message-email') }}!
-        </div>
-      @endif
-    </p>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -86,16 +62,11 @@
                 <div class="title m-b-md">
                     B2B-Tracker
                 </div>
-                
+                <p>
+                    OOps, We are unable to get this page to load, Go back to the homepage
+                </p>
                 <div class="links">
                     <a href="/">Home</a>
-                    @if (!Auth::check())
-                    <a href="{{route('getSignup')}}">Register</a>
-                    <a href="{{route('login')}}">Login</a>
-                    @else
-                    <a href="{{route('dashboard-index')}}">Dashboard</a>
-                    <a href="{{route('getLogout')}}">Logout</a>
-                    @endif
                 </div>
             </div>
         </div>

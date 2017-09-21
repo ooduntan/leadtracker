@@ -4,7 +4,7 @@
 <div class="container-fluid" style="">
 		<div class="container">
             <div class="col-md-6 col-md-offset-3 card" style="margin-top: 3%; margin-bottom: 3%; background-color: #E0E0E0;">
-                <h3 style="margin-top: 3%; margin-bottom: 3%;">Register with Us, or <a href="{{ route('getLogin') }}">Log In</a> or return <a href="/">Home</a></h3>
+                <h3 style="margin-top: 3%; margin-bottom: 3%;">Register with Us, or <a href="{{ route('login') }}">Log In</a> or return <a href="/">Home</a></h3>
                 <form class="form" role="form" method="POST" action="{{ route('postSignup') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">

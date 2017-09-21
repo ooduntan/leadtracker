@@ -17,6 +17,14 @@
         </div>
       @endif
 	</p>
+
+	<p>
+	  @if (session('message-failed'))
+        <div class="alert alert-danger">
+            {{ session('message-failed') }}!
+        </div>
+      @endif
+	</p>
 	<div class="container">
 		<div class="col-md-6 col-md-offset-3 card" style="margin-top: 3%; margin-bottom: 3%; background-color: #E0E0E0;">
 			<h3 style="margin-top: 3%; margin-bottom: 3%;">Log In, or <a href="{{ route('getSignup') }}">Sign Up</a> or return <a href="/">Home</a></h3>

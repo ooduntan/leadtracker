@@ -10,6 +10,7 @@ class Website extends Model
         'user_id',
         'domain',
         'status',
+        'ip_address',
     ];
 
     /**

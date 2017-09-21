@@ -68,12 +68,14 @@ class B2BSeeder extends Seeder
             'domain' => 'http://www.demola.com',
             'user_id' => 1,
             'status' => 1,
+            'ip_address' => '62.154.197.160',
         ]);
 
         Website::create([
             'domain' => 'http://www.stephen.com',
             'user_id' => 2,
             'status' => 1,
+            'ip_address' => '62.154.197.160',
         ]);
 
         Visitor::create([

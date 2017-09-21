@@ -17,6 +17,7 @@ class CreateWebsitesTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('domain')->unique();
+            $table->string('ip_address');
             $table->integer('status');
             $table->timestamps();
 

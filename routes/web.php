@@ -31,7 +31,7 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('login', [
 	'uses' => 'Auth\LoginController@showLoginForm',
-	'as' => 'getLogin',
+	'as' => 'login',
 ]);
 
 Route::post('login', [
@@ -47,6 +47,7 @@ Route::get('logout', [
 Route::get('dashboard', [
 	'uses' => 'DashboardController@index',
 	'as'   => 'dashboard-index',
+	'middleware' => 'auth',
 ]);
 
 Route::get('ripedata/{ip}', [
@@ -57,6 +58,7 @@ Route::get('ripedata/{ip}', [
 Route::get('visitors', [
 	'uses' => 'VisitorController@getNewVisitors',
 	'as'   => 'visitors',
+	'middleware' => 'auth',
 ]);
 
 Route::get('website/{websiteId}/visitors', [
@@ -67,26 +69,31 @@ Route::get('website/{websiteId}/visitors', [
 Route::get('visitor/{visitorId}/category/{categoryId}/classify', [
 	'uses' => 'VisitorController@classify',
 	'as'   => 'classify',
+	'middleware' => 'auth',
 ]);
 
 Route::get('actions', [
 	'uses' => 'VisitorController@getActions',
 	'as'   => 'get-actions',
+	'middleware' => 'auth',
 ]);
 
 Route::get('visitors/lead', [
 	'uses' => 'VisitorController@getLeadVisitor',
 	'as'   => 'lead',
+	'middleware' => 'auth',
 ]);
 
 Route::get('visitors/customer', [
 	'uses' => 'VisitorController@getCustomerVisitor',
 	'as'   => 'customer',
+	'middleware' => 'auth',
 ]);
 
 Route::get('visitors/competitor', [
 	'uses' => 'VisitorController@getCompetitorVisitor',
 	'as'   => 'competitor',
+	'middleware' => 'auth',
 ]);
 
 Route::get('visitor/{id}/details', [
@@ -97,24 +104,29 @@ Route::get('visitor/{id}/details', [
 Route::post('note', [
 	'uses' => 'NoteActivtyController@postNote',
 	'as' => 'post-note',
+	'middleware' => 'auth',
 ]);
 
 Route::post('visitor/{id}/details', [
 	'uses' => 'VisitorController@updateVisitorDetails',
 	'as' => 'update-contact',
+	'middleware' => 'auth',
 ]);
 
 Route::get('website', [
 	'uses' => 'WebsiteController@websiteForm',
 	'as'   => 'website-form',
+	'middleware' => 'auth',
 ]);
 
 Route::post('website', [
 	'uses' => 'WebsiteController@registerWebsite',
 	'as'   => 'register-website',
+	'middleware' => 'auth',
 ]);
 
 Route::get('profile', [
 	'uses' => 'UserController@profile',
 	'as'   => 'profile',
+	'middleware' => 'auth',
 ]);
