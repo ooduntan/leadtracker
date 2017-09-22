@@ -54,7 +54,7 @@ class VisitorController extends Controller
      * Get data from getRipeData method and save
      *
      * @param $data
-     */ 
+     */
     public function storeData($data)
     {
         // dd($data);
@@ -133,7 +133,7 @@ class VisitorController extends Controller
         }
         $website = Website::where('id', $request->websiteId)->get();
         array_push($value, $website);
-        
+
         foreach ($website as $key => $value) {
             array_push($visitors, Visitor::where('website_id', $value->id)->get());
         }
@@ -199,7 +199,7 @@ class VisitorController extends Controller
 
     public function updateVisitorDetails(Request $request)
     {
-        if (isset(($_POST['form-a']))) {
+        if ($_POST['form-a'] !== null) {
             $company = Company::where('visitor_id', $request->id)->update([
                 'contact_name' => $request->contact,
                 'contact_email' => $request->email,
@@ -228,7 +228,7 @@ class VisitorController extends Controller
             'status' => 1,
             'category_id' => $request->categoryId,
         ]);
-        
+
         if ($visitor == 1) {
             return redirect()->route('visitors')->with('message-success', 'You succesfully clasify the visitor');
         } else {
