@@ -111,8 +111,10 @@ class RegisterController extends Controller
         $this->mailer->Username = env('Username');
         $this->mailer->Password = env('Password');
         $this->mailer->SMTPSecure = 'ssl';
+        $this->mailer->setFrom = 'ssl';
         $this->mailer->Port = 465;
 
+        $this->mailer->setFrom(env('Username'), 'BB-Tracker');
         $this->mailer->addAddress($data['email']);
         $this->mailer->isHTML(true);
         $this->mailer->Subject = 'Verify your email address';
